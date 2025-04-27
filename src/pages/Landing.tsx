@@ -1,0 +1,120 @@
+
+import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { Search, Users, User, Clock } from 'lucide-react';
+
+const Landing = () => {
+  const { isAuthenticated } = useAuth();
+  
+  const features = [
+    {
+      title: 'Find Teammates',
+      description: 'Connect with players who match your skill level and play style.',
+      icon: <Search className="w-6 h-6 text-valorant-red" />,
+    },
+    {
+      title: 'Build Your Team',
+      description: 'Create or join teams to compete and rank up together.',
+      icon: <Users className="w-6 h-6 text-valorant-red" />,
+    },
+    {
+      title: 'Track Progress',
+      description: 'Monitor your stats and see how you improve over time.',
+      icon: <User className="w-6 h-6 text-valorant-red" />,
+    },
+    {
+      title: 'Match History',
+      description: 'Keep track of your games and teammates.',
+      icon: <Clock className="w-6 h-6 text-valorant-red" />,
+    },
+  ];
+
+  return (
+    <div className="pt-4 pb-16">
+      {/* Hero section */}
+      <section className="relative mb-16">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="flex flex-col space-y-6">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+              Find Your Perfect <span className="text-valorant-red">Valorant</span> Team
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Connect with players of similar skill, build teams that communicate well,
+              and climb the ranks together. Never solo queue again.
+            </p>
+            
+            <div className="flex flex-wrap gap-4">
+              {isAuthenticated ? (
+                <Link to="/dashboard" className="valorant-button">
+                  Find Players Now
+                </Link>
+              ) : (
+                <>
+                  <Link to="/register" className="valorant-button">
+                    Join For Free
+                  </Link>
+                  <Link to="/login" className="valorant-button-outline">
+                    Login
+                  </Link>
+                </>
+              )}
+            </div>
+            
+            <div className="text-sm text-muted-foreground">
+              Already used by <span className="font-semibold text-valorant-light">5,000+</span> Valorant players
+            </div>
+          </div>
+          <div className="relative bg-valorant-dark/50 rounded-lg h-72 md:h-96 overflow-hidden">
+            {/* We'll replace this with a proper hero image later */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center">
+                <div className="text-8xl font-extrabold text-valorant-red">5Q</div>
+                <div className="mt-2 text-xl font-semibold">.GG</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Features section */}
+      <section className="mb-16">
+        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">
+          Everything You Need To Build The Perfect Squad
+        </h2>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, index) => (
+            <div key={index} className="valorant-card p-6">
+              <div className="rounded-full bg-valorant-blue/30 p-3 inline-block mb-4">
+                {feature.icon}
+              </div>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-muted-foreground">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+      
+      {/* CTA section */}
+      <section className="valorant-card p-8 md:p-12 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4">
+          Ready to find your next teammate?
+        </h2>
+        <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+          Join thousands of players who are already using fiveQ.gg to connect, team up, and rank up together.
+        </p>
+        {isAuthenticated ? (
+          <Link to="/dashboard" className="valorant-button">
+            Go to Dashboard
+          </Link>
+        ) : (
+          <Link to="/register" className="valorant-button">
+            Create Free Account
+          </Link>
+        )}
+      </section>
+    </div>
+  );
+};
+
+export default Landing;
