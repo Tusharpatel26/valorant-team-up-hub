@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Search, Users, User, Clock } from 'lucide-react';
@@ -31,8 +30,8 @@ const Landing = () => {
 
   return (
     <div className="pt-4 pb-16">
-      {/* Hero section */}
-      <section className="relative mb-16">
+      {/* Hero section with fade-in and scale animations */}
+      <section className="relative mb-16 animate-fade-in animate-scale-in">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="flex flex-col space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -76,16 +75,24 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* Features section */}
+      {/* Features section with staggered animations */}
       <section className="mb-16">
-        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center">
+        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center animate-fade-in">
           Everything You Need To Build The Perfect Squad
         </h2>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <div key={index} className="valorant-card p-6">
-              <div className="rounded-full bg-valorant-blue/30 p-3 inline-block mb-4">
+            <div 
+              key={index} 
+              className={`valorant-card p-6 
+                animate-fade-in 
+                ${index === 0 ? 'delay-100' : 
+                  index === 1 ? 'delay-200' : 
+                  index === 2 ? 'delay-300' : 
+                  'delay-400'}`}
+            >
+              <div className="rounded-full bg-valorant-blue/30 p-3 inline-block mb-4 animate-pulse">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
@@ -95,20 +102,26 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* CTA section */}
-      <section className="valorant-card p-8 md:p-12 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4">
+      {/* CTA section with hover and fade animations */}
+      <section className="valorant-card p-8 md:p-12 text-center hover:scale-105 transition-transform duration-300 animate-fade-in">
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 animate-fade-in delay-200">
           Ready to find your next teammate?
         </h2>
-        <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+        <p className="text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in delay-300">
           Join thousands of players who are already using fiveQ.gg to connect, team up, and rank up together.
         </p>
         {isAuthenticated ? (
-          <Link to="/dashboard" className="valorant-button">
+          <Link 
+            to="/dashboard" 
+            className="valorant-button hover:animate-pulse"
+          >
             Go to Dashboard
           </Link>
         ) : (
-          <Link to="/register" className="valorant-button">
+          <Link 
+            to="/register" 
+            className="valorant-button hover:animate-pulse"
+          >
             Create Free Account
           </Link>
         )}
