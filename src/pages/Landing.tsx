@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Search, Users, User, Clock } from 'lucide-react';
+import FeatureCard from '../components/FeatureCard';
+import CTASection from '../components/CTASection';
 
 const Landing = () => {
   const { isAuthenticated } = useAuth();
@@ -83,49 +85,21 @@ const Landing = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
-            <div 
-              key={index} 
-              className={`valorant-card p-6 
-                animate-fade-in 
-                ${index === 0 ? 'delay-100' : 
-                  index === 1 ? 'delay-200' : 
-                  index === 2 ? 'delay-300' : 
-                  'delay-400'}`}
-            >
-              <div className="rounded-full bg-valorant-blue/30 p-3 inline-block mb-4 animate-pulse">
-                {feature.icon}
-              </div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
-            </div>
+            <FeatureCard
+              key={index}
+              {...feature}
+              animationDelay={
+                index === 0 ? 'delay-100' : 
+                index === 1 ? 'delay-200' : 
+                index === 2 ? 'delay-300' : 
+                'delay-400'
+              }
+            />
           ))}
         </div>
       </section>
       
-      {/* CTA section with hover and fade animations */}
-      <section className="valorant-card p-8 md:p-12 text-center hover:scale-105 transition-transform duration-300 animate-fade-in">
-        <h2 className="text-2xl md:text-3xl font-bold mb-4 animate-fade-in delay-200">
-          Ready to find your next teammate?
-        </h2>
-        <p className="text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in delay-300">
-          Join thousands of players who are already using fiveQ.gg to connect, team up, and rank up together.
-        </p>
-        {isAuthenticated ? (
-          <Link 
-            to="/dashboard" 
-            className="valorant-button hover:animate-pulse"
-          >
-            Go to Dashboard
-          </Link>
-        ) : (
-          <Link 
-            to="/register" 
-            className="valorant-button hover:animate-pulse"
-          >
-            Create Free Account
-          </Link>
-        )}
-      </section>
+      <CTASection isAuthenticated={isAuthenticated} />
     </div>
   );
 };
