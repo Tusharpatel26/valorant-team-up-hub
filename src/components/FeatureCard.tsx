@@ -13,7 +13,7 @@ const FeatureCard = ({ title, description, icon, animationDelay }: FeatureCardPr
     <div 
       className={`valorant-card p-6 animate-fade-in ${animationDelay}`}
     >
-      <div className="rounded-full bg-valorant-blue/30 p-3 inline-block mb-4 animate-pulse">
+      <div className="rounded-full bg-valorant-blue/30 p-3 inline-block mb-4">
         {icon}
       </div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>

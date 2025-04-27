@@ -63,12 +63,12 @@
   }
   
   .valorant-button {
-    @apply px-4 py-2 bg-valorant-red text-valorant-light font-semibold rounded hover:bg-opacity-90 
-    transition-all duration-200 uppercase tracking-wider text-sm;
+    @apply px-4 py-2 bg-valorant-red text-valorant-light font-semibold rounded 
+    hover:bg-white hover:text-valorant-red transition-all duration-200 uppercase tracking-wider text-sm;
   }
   
   .valorant-button-outline {
     @apply px-4 py-2 bg-transparent text-valorant-red border border-valorant-red font-semibold rounded 
-    hover:bg-valorant-red/10 transition-all duration-200 uppercase tracking-wider text-sm;
+    hover:bg-white hover:text-valorant-red transition-all duration-200 uppercase tracking-wider text-sm;
   }
 }

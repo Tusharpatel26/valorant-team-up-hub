@@ -31,9 +31,8 @@ const Landing = () => {
   ];
 
   return (
-    <div className="pt-4 pb-16">
-      {/* Hero section with fade-in and scale animations */}
-      <section className="relative mb-16 animate-fade-in animate-scale-in">
+    <div className="pt-4 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="relative mb-16 animate-fade-in">
         <div className="grid md:grid-cols-2 gap-8 items-center">
           <div className="flex flex-col space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -66,7 +65,6 @@ const Landing = () => {
             </div>
           </div>
           <div className="relative bg-valorant-dark/50 rounded-lg h-72 md:h-96 overflow-hidden">
-            {/* We'll replace this with a proper hero image later */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="text-center">
                 <div className="text-8xl font-extrabold text-valorant-red">5Q</div>
@@ -77,7 +75,6 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* Features section with staggered animations */}
       <section className="mb-16">
         <h2 className="text-2xl md:text-3xl font-bold mb-10 text-center animate-fade-in">
           Everything You Need To Build The Perfect Squad
